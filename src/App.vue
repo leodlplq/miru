@@ -1,40 +1,40 @@
 <template>
-  <div id="app">
-  <Menu />
-  <Iconoir />
-  </div>
+    <main>
+        <Menu />
+        <Main />
+    </main>
 </template>
 
 <script>
-import {Iconoir} from 'iconoir/icons/iconoir.svg'
-import Menu from './components/Menu'
-
+import Menu from "./components/Menu";
+import Main from "./components/Main";
 
 export default {
-  name: 'App',
-  components: {
-		Menu, 
-    Iconoir
-	}
-}
+    name: "App",
+    components: {
+        Menu,
+        Main,
+    },
+};
 </script>
 
 <style>
-*{
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: 'Josefin Sans';
-  color: white;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Josefin Sans";
+    color: white;
 }
 
-body{
-  min-height: 100vh;
-  background: #151515;
+body {
+    min-height: 100vh;
+    background: #151515;
 }
 
-#app {
-  
-  
+main {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
 }
 </style>
