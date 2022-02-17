@@ -1,28 +1,40 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <Menu />
+  <Iconoir />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import {Iconoir} from 'iconoir/icons/iconoir.svg'
+import Menu from './components/Menu'
+
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
+		Menu, 
+    Iconoir
+	}
 }
 </script>
 
 <style>
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Josefin Sans';
+  color: white;
+}
+
+body{
+  min-height: 100vh;
+  background: #151515;
+}
+
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  
+  
 }
 </style>

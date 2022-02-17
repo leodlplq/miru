@@ -1,4 +1,6 @@
-# my-project
+# Miru app
+
+App that let you see what anime you're watching.
 
 ## Project setup
 ```
