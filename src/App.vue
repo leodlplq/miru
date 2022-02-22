@@ -1,13 +1,13 @@
 <template>
     <main>
         <Menu />
-        <Main />
+        <Main firstname="Léo" lastname="Delplanque" />
     </main>
 </template>
 
 <script>
-import Menu from "./components/Menu";
-import Main from "./components/Main";
+import Menu from "@/components/Menu";
+import Main from "@/components/Main";
 
 export default {
     name: "App",
@@ -25,6 +25,7 @@ export default {
     box-sizing: border-box;
     font-family: "Josefin Sans";
     color: white;
+    
 }
 
 body {

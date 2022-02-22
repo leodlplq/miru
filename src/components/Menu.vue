@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import IconHome from "./icons/IconHome";
+import IconHome from "@/components/icons/IconHome";
 
 export default {
     name: "Menu",
@@ -82,6 +82,7 @@ export default {
     align-items: center;
     font-size: 20px;
     gap: 10px;
+    font-weight: 600;
 }
 
 .link span {
