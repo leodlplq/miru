@@ -22,8 +22,8 @@ async function getRandomAnime(){
     }
 }
 
-async function getRecommendedAnimes(limit = 100){
-    const response = await fetch(`https://api.jikan.moe/v4/recommendations/anime?limit=${limit}`)
+async function getRecommendedAnimes(){
+    const response = await fetch(`https://api.jikan.moe/v4/recommendations/anime`)
 
     if(response.status == 200){
         //return response.json();
@@ -33,6 +33,20 @@ async function getRecommendedAnimes(limit = 100){
     }
 }
 
-export { getAnimeById, getRandomAnime, getRecommendedAnimes }
+async function getTrendingAnimes(){
+    
+    const response = await fetch(`https://api.jikan.moe/v4/top/anime`)
+
+    if(response.status == 200){
+        //return response.json();
+        console.log( await response.json())
+    } else {
+        console.log("error");
+    }
+}
+
+
+
+export { getAnimeById, getRandomAnime, getRecommendedAnimes, getTrendingAnimes }
 
 

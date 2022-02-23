@@ -1,14 +1,18 @@
 <template>
     <div class="view">
         Salut : {{lastname}} ! 
+        <HeroBanner />
+
     </div>
 </template>
 
 <script>
-import { getAnimeById, getRandomAnime, getRecommendedAnimes } from "@/services/api/animeData.js"
-getAnimeById(1);
-getRandomAnime();
-getRecommendedAnimes(10);
+import { getAnimeById, getRandomAnime, getRecommendedAnimes, getTrendingAnimes } from "@/services/api/animeData.js"
+import HeroBanner from '@/components/HeroBanner'
+getAnimeById(40456)
+getRandomAnime()
+getRecommendedAnimes()
+getTrendingAnimes()
 
 
 
@@ -27,6 +31,9 @@ export default {
     },
     methods:{
         
+    },
+    components: {
+        HeroBanner,
     }
 };
 </script>
