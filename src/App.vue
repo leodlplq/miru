@@ -25,7 +25,6 @@ export default {
     box-sizing: border-box;
     font-family: "Josefin Sans";
     color: white;
-    
 }
 
 body {
@@ -37,5 +36,15 @@ main {
     width: 100%;
     min-height: 100vh;
     position: relative;
+}
+
+.btn {
+    background: #307351;
+    color: #fff;
+    padding: 10px 50px;
+    align-self: flex-end;
+    justify-self: flex-end;
+    text-decoration: none;
+    border-radius: 5px;
 }
 </style>
