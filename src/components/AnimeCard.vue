@@ -29,13 +29,14 @@ export default {
     width: fit-content;
     border-radius: 5px;
     overflow: hidden;
-    height: 235px;
+    aspect-ratio: 0.70;
+    width: 100%;
 }
 
 .anime-card > img {
     object-fit: cover;
-    aspect-ratio: 316/450;
-    height: 235px;
+    width:100%;
+    height:100%;
 }
 
 .card-overlay {

@@ -109,9 +109,9 @@ export default {
 }
 
 .card-list {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    gap:10px;
+    grid-template-columns: repeat(8, 1fr);
     width: 100%;
 }
 </style>

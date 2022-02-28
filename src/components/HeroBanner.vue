@@ -110,6 +110,7 @@ export default {
 .banner-title {
     font-size: 36px;
     margin: 0;
+    text-overflow: ellipsis;
 }
 
 .banner-rating {
