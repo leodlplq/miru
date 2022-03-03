@@ -1,7 +1,7 @@
 <template>
     <main>
         <Menu />
-        <Main firstname="Léo" lastname="Delplanque" />
+        <Main />
     </main>
 </template>
 

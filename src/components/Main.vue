@@ -1,12 +1,12 @@
 <template>
     <div class="view">
         <HeroBanner
-            backgroundimage="https://img.youtube.com/vi/QwvWdnd2Ktg/maxresdefault.jpg"
-            image="https://cdn.myanimelist.net/images/anime/1908/120036l.webp"
-            title="Demon Slayer: Kimetsu no Yaiba Entertainment District Arc"
-            titlejapanese="鬼滅の刃 遊郭編"
-            synopsis="The devastation of the Mugen Train incident still weighs heavily on the members of the Demon Slayer Corps. Despite being given time to recover, life must go on, as the wicked never sleep: a vicious demon is terrorizing the alluring women of the Yoshiwara Entertainment District. The Sound Pillar, Tengen Uzui, and his three wives are on the case. However, when he soon loses contact with his spouses, Tengen fears the worst and enlists the help of Tanjirou Kamado, Zenitsu Agatsuma, and Inosuke Hashibira to infiltrate the district's most prominent houses and locate the depraved Upper Rank demon. [Written by MAL Rewrite]"
-            rating="8.92"
+            :backgroundimage="dataRandomAnime.trailer.images.large_image_url"
+            :image="dataRandomAnime.images.jpg.large_image_url"
+            :title="dataRandomAnime.title"
+            :titlejapanese="dataRandomAnime.title_japanese"
+            :synopsis="dataRandomAnime.synopsis"
+            :rating="dataRandomAnime.score"
         />
         <div class="section-title">
             <h1>Trending animes</h1>
@@ -14,46 +14,11 @@
         </div>
 
         <div class="card-list">
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
-        </div>
-
-        <div class="section-title">
-            <h1>Recommended animes</h1>
-            <a href="#" class="btn">see more</a>
-        </div>
-
-        <div class="card-list">
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
-        </div>
-
-        <div class="section-title">
-            <h1>Random animes</h1>
-            <a href="#" class="btn">see more</a>
-        </div>
-
-        <div class="card-list">
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
-            <AnimeCard />
+            <AnimeCard
+                v-for="item in dataTrendingAnime"
+                :animeData="item"
+                :key="item.id"
+            />
         </div>
     </div>
 </template>
@@ -62,26 +27,71 @@
 import {
     getAnimeById,
     getRandomAnime,
-    getRecommendedAnimes,
     getTrendingAnimes,
 } from "@/services/api/animeData.js";
 import HeroBanner from "@/components/HeroBanner";
 import AnimeCard from "./AnimeCard.vue";
 
 getAnimeById(40456);
-getRandomAnime();
-getRecommendedAnimes();
+
 getTrendingAnimes();
 
 export default {
     name: "Main",
-    props: ["firstname", "lastname"],
+    props: [],
     data() {
         return {
-            dataAnime: ["lol", "salut", "comment va ?"],
+            dataRandomAnime: {
+                trailer: {
+                    images: {
+                        large_image_url:
+                            "https://cdn.myanimelist.net/images/anime/1704/106947l.jpg",
+                    },
+                },
+                images: {
+                    jpg: {
+                        large_image_url:
+                            "https://cdn.myanimelist.net/images/anime/1704/106947l.jpg",
+                    },
+                },
+                title: "Kimetsu no Yaiba Movie: Mugen Ressha-hen",
+                title_japanese: "劇場版 鬼滅の刃 無限列車編",
+                synopsis:
+                    "After a string of mysterious disappearances begin to plague a train, the Demon Slayer Corps' multiple attempts to remedy the problem prove fruitless. To prevent further casualties, the Flame Pillar, Kyoujurou Rengoku, takes it upon himself to eliminate the threat. Accompanying him are some of the Corps' most promising new blood: Tanjirou Kamado, Zenitsu Agatsuma, and Inosuke Hashibira, who all hope to witness the fiery feats of this model demon slayer firsthand. Unbeknownst to them, the demonic forces responsible for the disappearances have already put their sinister plan in motion. Under this demonic presence, the group must muster every ounce of their willpower and draw their swords to save all two hundred passengers onboard. Kimetsu no Yaiba Movie: Mugen Ressha-hen delves into the deepest corners of Tanjirou's mind, putting his resolve and commitment to duty to the test. [Written by MAL Rewrite]",
+                score: 9.1,
+            },
+
+            dataTrendingAnime: [
+                {
+                    id: 0,
+                    images: {
+                        jpg: {
+                            large_image_url:
+                                "https://cdn.myanimelist.net/images/anime/1704/106947l.jpg",
+                        },
+                    },
+                    title: "Kimetsu no Yaiba Movie: Mugen Ressha-hen",
+                    title_japanese: "劇場版 鬼滅の刃 無限列車編",
+                    synopsis:
+                        "After a string of mysterious disappearances begin to plague a train, the Demon Slayer Corps' multiple attempts to remedy the problem prove fruitless. To prevent further casualties, the Flame Pillar, Kyoujurou Rengoku, takes it upon himself to eliminate the threat. Accompanying him are some of the Corps' most promising new blood: Tanjirou Kamado, Zenitsu Agatsuma, and Inosuke Hashibira, who all hope to witness the fiery feats of this model demon slayer firsthand. Unbeknownst to them, the demonic forces responsible for the disappearances have already put their sinister plan in motion. Under this demonic presence, the group must muster every ounce of their willpower and draw their swords to save all two hundred passengers onboard. Kimetsu no Yaiba Movie: Mugen Ressha-hen delves into the deepest corners of Tanjirou's mind, putting his resolve and commitment to duty to the test. [Written by MAL Rewrite]",
+                    score: 9.1,
+                },
+            ],
         };
     },
-    methods: {},
+    created: function () {
+        this.retrieveRandomAnimeData();
+        this.retrieveTrendingAnime();
+    },
+    methods: {
+        async retrieveRandomAnimeData() {
+            this.dataRandomAnime = (await getRandomAnime()).data;
+            console.log(this.dataRandomAnime);
+        },
+        async retrieveTrendingAnime() {
+            this.dataTrendingAnime = (await getTrendingAnimes()).data;
+        },
+    },
     components: {
         HeroBanner,
         AnimeCard,
@@ -109,9 +119,9 @@ export default {
 }
 
 .card-list {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 20px;
     width: 100%;
 }
 </style>

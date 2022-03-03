@@ -1,7 +1,12 @@
 <template>
     <div class="hero-banner">
         <div class="banner-background">
-            <img v-bind:src="backgroundimage" v-bind:alt="title" />
+            <img
+                v-if="backgroundimage == null"
+                v-bind:src="image"
+                v-bind:alt="title"
+            />
+            <img v-else v-bind:src="backgroundimage" v-bind:alt="title" />
             <div class="overlay"></div>
         </div>
         <div class="banner-infos">
@@ -14,9 +19,10 @@
                             titlejapanese
                         }}</span>
                     </div>
-                    <h1 class="banner-rating">
+                    <h1 v-if="rating" class="banner-rating">
                         {{ rating }}/10 <img src="@/assets/icons/star.png" />
                     </h1>
+                    <h1 v-else class="banner-rating">Unrated</h1>
                 </div>
 
                 <p class="banner-synopsis">
@@ -94,6 +100,7 @@ export default {
     flex-direction: column;
     padding-left: 30px;
     justify-content: space-between;
+    width: 100%;
 }
 
 .top {

@@ -15,9 +15,12 @@
                 <IconHome />
                 <span>Trending</span>
             </a>
+        </div>
+
+        <div class="main-menu">
             <a href="" class="recommended link">
                 <IconHome />
-                <span>Recommendations</span>
+                <span>Search an anime</span>
             </a>
         </div>
 

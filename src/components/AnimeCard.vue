@@ -1,11 +1,8 @@
 <template>
     <div class="anime-card">
-        <img
-            src="https://cdn.myanimelist.net/images/anime/1704/106947l.webp"
-            alt="Anime images"
-        />
+        <img :src="animeData.images.jpg.large_image_url" alt="Anime images" />
         <a class="card-overlay" href="#">
-            <h5>Demon Slayer -Kimetsu no Yaiba- The Movie: Mugen Train</h5>
+            <h5>{{ animeData.title }}</h5>
             <span
                 >8.5
                 <img
@@ -20,6 +17,7 @@
 <script>
 export default {
     name: "AnimeCard",
+    props: ["animeData"],
 };
 </script>
 
@@ -29,13 +27,13 @@ export default {
     width: fit-content;
     border-radius: 5px;
     overflow: hidden;
-    height: 235px;
+    aspect-ratio: 316/450;
+    width: 100%;
 }
 
 .anime-card > img {
     object-fit: cover;
-    aspect-ratio: 316/450;
-    height: 235px;
+    height: 100%;
 }
 
 .card-overlay {
@@ -51,6 +49,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    overflow: hidden;
 }
 
 .card-overlay > h5 {
