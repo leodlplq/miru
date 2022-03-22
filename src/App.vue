@@ -1,19 +1,20 @@
 <template>
     <main>
         <Menu />
-        <Main />
+        <div class="view">
+            <router-view></router-view>
+        </div>
+        
     </main>
 </template>
 
 <script>
 import Menu from "@/components/Menu";
-import Main from "@/components/Main";
 
 export default {
     name: "App",
     components: {
-        Menu,
-        Main,
+        Menu
     },
 };
 </script>
@@ -46,5 +47,13 @@ main {
     justify-self: flex-end;
     text-decoration: none;
     border-radius: 5px;
+}
+.view {
+    position: absolute;
+    right: 0;
+    width: calc(100% - 350px);
+    color: white;
+    padding: 50px;
+    font-weight: 200;
 }
 </style>

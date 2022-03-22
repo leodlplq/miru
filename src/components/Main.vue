@@ -1,5 +1,5 @@
 <template>
-    <div class="view">
+    <div>
         <HeroBanner
             :backgroundimage="dataRandomAnime.trailer.images.large_image_url"
             :image="dataRandomAnime.images.jpg.large_image_url"
@@ -100,14 +100,7 @@ export default {
 </script>
 
 <style scoped>
-.view {
-    position: absolute;
-    right: 0;
-    width: calc(100% - 350px);
-    color: white;
-    padding: 50px;
-    font-weight: 200;
-}
+
 
 .section-title {
     width: 100%;

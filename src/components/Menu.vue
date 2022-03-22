@@ -3,25 +3,25 @@
         <img src="../assets/logo.png" alt="Logo MIRU" id="logo-miru" />
 
         <div class="main-menu">
-            <a href="#" class="home link">
+            <router-link to="/" class="home link">
                 <IconHome />
                 <span>Home</span>
-            </a>
-            <a href="" class="random link">
+            </router-link>
+            <router-link to="/random" class="random link">
                 <IconHome />
                 <span>Random anime</span>
-            </a>
-            <a href="" class="trending link">
+            </router-link>
+            <router-link to="/trending" href="" class="trending link">
                 <IconHome />
                 <span>Trending</span>
-            </a>
+            </router-link>
         </div>
 
         <div class="main-menu">
-            <a href="" class="recommended link">
+            <router-link to="/search" class="recommended link">
                 <IconHome />
                 <span>Search an anime</span>
-            </a>
+            </router-link>
         </div>
 
         <div class="profile-menu">
