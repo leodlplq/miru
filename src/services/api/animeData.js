@@ -33,4 +33,15 @@ async function getTrendingAnimes() {
     }
 }
 
-export { getAnimeById, getRandomAnime, getTrendingAnimes };
+async function getSearchedAnime(query) {
+    const response = await fetch(`https://api.jikan.moe/v4/anime?q=${query}&limit=50`);
+
+    if (response.status == 200) {
+        return response.json();
+        //console.log(await response.json());
+    } else {
+        console.log("error");
+    }
+}
+
+export { getAnimeById, getRandomAnime, getTrendingAnimes, getSearchedAnime };

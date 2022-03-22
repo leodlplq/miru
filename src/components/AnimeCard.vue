@@ -3,13 +3,14 @@
         <img :src="animeData.images.jpg.large_image_url" alt="Anime images" />
         <a class="card-overlay" href="#">
             <h5>{{ animeData.title }}</h5>
-            <span
-                >8.5
+            <span v-if="animeData.score">
+                {{ animeData.score }}
                 <img
                     src="@/assets/icons/star.png"
                     alt="star"
                     class="litte-star"
             /></span>
+            <span v-else>Unrated</span>
         </a>
     </div>
 </template>

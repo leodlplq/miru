@@ -11,9 +11,4 @@ export default {
 </script>
 
 <style scoped>
-
-
-.tadiv:hover .lautrediv{
-
-}
 </style>

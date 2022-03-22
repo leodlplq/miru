@@ -13,28 +13,17 @@
             <a href="#" class="btn">see more</a>
         </div>
 
-        <div class="card-list">
-            <AnimeCard
-                v-for="item in dataTrendingAnime"
-                :animeData="item"
-                :key="item.id"
-            />
-        </div>
+        <AnimeGallery :animesData="dataTrendingAnime"/>
     </div>
 </template>
 
 <script>
 import {
-    getAnimeById,
     getRandomAnime,
     getTrendingAnimes,
 } from "@/services/api/animeData.js";
 import HeroBanner from "@/components/HeroBanner";
-import AnimeCard from "./AnimeCard.vue";
-
-getAnimeById(40456);
-
-getTrendingAnimes();
+import AnimeGallery from "@/components/AnimeGallery"
 
 export default {
     name: "Main",
@@ -94,14 +83,12 @@ export default {
     },
     components: {
         HeroBanner,
-        AnimeCard,
+        AnimeGallery,
     },
 };
 </script>
 
 <style scoped>
-
-
 .section-title {
     width: 100%;
     display: flex;
@@ -109,12 +96,5 @@ export default {
     align-items: center;
     margin-top: 70px;
     margin-bottom: 15px;
-}
-
-.card-list {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 20px;
-    width: 100%;
 }
 </style>
