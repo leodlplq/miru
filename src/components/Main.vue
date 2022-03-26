@@ -1,6 +1,7 @@
 <template>
     <div>
         <HeroBanner
+            :id="dataRandomAnime.mal_id"
             :backgroundimage="dataRandomAnime.trailer.images.large_image_url"
             :image="dataRandomAnime.images.jpg.large_image_url"
             :title="dataRandomAnime.title"
@@ -13,17 +14,14 @@
             <a href="#" class="btn">see more</a>
         </div>
 
-        <AnimeGallery :animesData="dataTrendingAnime"/>
+        <AnimeGallery :animesData="dataTrendingAnime" />
     </div>
 </template>
 
 <script>
-import {
-    getRandomAnime,
-    getTrendingAnimes,
-} from "@/services/api/animeData.js";
+import { getRandomAnime, getTrendingAnimes } from "@/services/api/animeData.js";
 import HeroBanner from "@/components/HeroBanner";
-import AnimeGallery from "@/components/AnimeGallery"
+import AnimeGallery from "@/components/AnimeGallery";
 
 export default {
     name: "Main",
@@ -78,7 +76,10 @@ export default {
             console.log(this.dataRandomAnime);
         },
         async retrieveTrendingAnime() {
-            this.dataTrendingAnime = (await getTrendingAnimes()).data;
+            this.dataTrendingAnime = (await getTrendingAnimes()).data.slice(
+                0,
+                16
+            );
         },
     },
     components: {

@@ -1,18 +1,23 @@
 <template>
-    <div class="anime-card">
-        <img :src="animeData.images.jpg.large_image_url" alt="Anime images" />
-        <a class="card-overlay" href="#">
-            <h5>{{ animeData.title }}</h5>
-            <span v-if="animeData.score">
-                {{ animeData.score }}
-                <img
-                    src="@/assets/icons/star.png"
-                    alt="star"
-                    class="litte-star"
-            /></span>
-            <span v-else>Unrated</span>
-        </a>
-    </div>
+    <router-link :to="`/anime/${animeData.mal_id}`">
+        <div class="anime-card">
+            <img
+                :src="animeData.images.jpg.large_image_url"
+                alt="Anime images"
+            />
+            <a class="card-overlay" href="#">
+                <h5>{{ animeData.title }}</h5>
+                <span v-if="animeData.score">
+                    {{ animeData.score }}
+                    <img
+                        src="@/assets/icons/star.png"
+                        alt="star"
+                        class="litte-star"
+                /></span>
+                <span v-else>Unrated</span>
+            </a>
+        </div>
+    </router-link>
 </template>
 
 <script>
@@ -35,6 +40,7 @@ export default {
 .anime-card > img {
     object-fit: cover;
     height: 100%;
+    width: 100%;
 }
 
 .card-overlay {

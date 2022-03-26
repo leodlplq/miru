@@ -8,18 +8,18 @@
                 <span>Home</span>
             </router-link>
             <router-link to="/random" class="random link">
-                <IconHome />
+                <IconRandom />
                 <span>Random anime</span>
             </router-link>
             <router-link to="/trending" href="" class="trending link">
-                <IconHome />
+                <IconTrending />
                 <span>Trending</span>
             </router-link>
         </div>
 
         <div class="main-menu">
             <router-link to="/search" class="recommended link">
-                <IconHome />
+                <IconSearch :classGrey="true" />
                 <span>Search an anime</span>
             </router-link>
         </div>
@@ -39,11 +39,17 @@
 
 <script>
 import IconHome from "@/components/icons/IconHome";
+import IconRandom from "@/components/icons/IconRandom";
+import IconTrending from "@/components/icons/IconTrending";
+import IconSearch from "@/components/icons/IconSearch";
 
 export default {
     name: "Menu",
     components: {
         IconHome,
+        IconRandom,
+        IconTrending,
+        IconSearch,
     },
 };
 </script>

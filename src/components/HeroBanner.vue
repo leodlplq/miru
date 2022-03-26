@@ -28,7 +28,9 @@
                 <p class="banner-synopsis">
                     {{ synopsis }}
                 </p>
-                <a href="#" class="btn">see more</a>
+                <router-link :to="`/anime/${id}`" class="btn"
+                    >see more</router-link
+                >
             </div>
         </div>
     </div>
@@ -45,6 +47,7 @@ export default {
         backgroundimage: { type: String },
         image: { type: String },
         rating: { type: Number },
+        id: { type: Number },
     },
 };
 </script>

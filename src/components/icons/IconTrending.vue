@@ -1,12 +1,12 @@
 <template>
     <svg class="icon icon-home" viewBox="0 0 30 30">
         <path
-            d="M3 9.5L12 4L21 9.5"
+            d="M16 20V12M16 12L19 15M16 12L13 15"
             stroke-linecap="round"
             stroke-linejoin="round"
         />
         <path
-            d="M19 13V19.4C19 19.7314 18.7314 20 18.4 20H5.6C5.26863 20 5 19.7314 5 19.4V13"
+            d="M4 14L12 6L15 9L20 4"
             stroke-linecap="round"
             stroke-linejoin="round"
         />
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-    name: "IconHome",
+    name: "IconTrending",
 };
 </script>
 

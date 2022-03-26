@@ -4,8 +4,32 @@ async function getAnimeById(id) {
     const response = await fetch(`https://api.jikan.moe/v4/anime/${id}`);
 
     if (response.status == 200) {
-        //return response.json();
-        console.log(await response.json());
+        return response.json();
+        //console.log(await response.json());
+    } else {
+        console.log("error");
+    }
+}
+
+async function getCharactersByAnimeId(id) {
+    const response = await fetch(
+        `https://api.jikan.moe/v4/anime/${id}/characters`
+    );
+
+    if (response.status == 200) {
+        return response.json();
+        //console.log(await response.json());
+    } else {
+        console.log("error");
+    }
+}
+
+async function getNewsByAnimeId(id) {
+    const response = await fetch(`https://api.jikan.moe/v4/anime/${id}/news`);
+
+    if (response.status == 200) {
+        return response.json();
+        //console.log(await response.json());
     } else {
         console.log("error");
     }
@@ -34,7 +58,9 @@ async function getTrendingAnimes() {
 }
 
 async function getSearchedAnime(query) {
-    const response = await fetch(`https://api.jikan.moe/v4/anime?q=${query}&limit=50`);
+    const response = await fetch(
+        `https://api.jikan.moe/v4/anime?q=${query}&limit=50`
+    );
 
     if (response.status == 200) {
         return response.json();
@@ -44,4 +70,11 @@ async function getSearchedAnime(query) {
     }
 }
 
-export { getAnimeById, getRandomAnime, getTrendingAnimes, getSearchedAnime };
+export {
+    getAnimeById,
+    getRandomAnime,
+    getTrendingAnimes,
+    getSearchedAnime,
+    getCharactersByAnimeId,
+    getNewsByAnimeId,
+};
