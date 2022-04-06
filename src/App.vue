@@ -47,6 +47,7 @@ main {
     justify-self: flex-end;
     text-decoration: none;
     border-radius: 5px;
+    border: none;
 }
 .view {
     position: absolute;

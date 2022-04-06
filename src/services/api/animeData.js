@@ -57,9 +57,9 @@ async function getTrendingAnimes() {
     }
 }
 
-async function getSearchedAnime(query) {
+async function getSearchedAnime(query, page) {
     const response = await fetch(
-        `https://api.jikan.moe/v4/anime?q=${query}&limit=50`
+        `https://api.jikan.moe/v4/anime?q=${query}&page=${page}&limit=24`
     );
 
     if (response.status == 200) {

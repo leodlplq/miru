@@ -7,6 +7,7 @@
                 type="text"
                 v-model="search"
                 placeholder="Search for an anime (e.g. Naruto)"
+                v-on:input="setLocalStorage"
             />
             <button v-on:click="retrieveSearchedAnimeData">
                 <IconSearch />
@@ -16,7 +17,10 @@
             </button>
         </div>
         <div class="search-result">
-            <AnimeGallery :animesData="animesData.data" />
+            <AnimeGallery :animesData="animesData" />
+            <button class="btn" v-if="!isLastPage" v-on:click="retrieveSearchedAnimeData">
+                See more
+            </button>
         </div>
     </div>
 </template>
@@ -37,16 +41,41 @@ export default {
     data() {
         return {
             animesData: [],
-            search: "",
+            search: localStorage.getItem('search') || "",
+            isLastPage:true,
+            currentPage:1,
         };
     },
+    // computed:{
+    //     isLastPage : function(){
+    //         return 
+    //     }
+    // },
+    created: function(){
+        if(this.search != ""){
+            this.retrieveSearchedAnimeData()
+        }
+    },
     methods: {
+
         eraseSearchBar: function () {
             this.search = "";
-            console.log(this.animesData);
         },
+
+        setLocalStorage: function(){
+            localStorage.setItem('search', this.search)
+        },
+
         async retrieveSearchedAnimeData() {
-            this.animesData = await getSearchedAnime(this.search);
+            let data = await getSearchedAnime(this.search, this.currentPage);
+            if(data.pagination.has_next_page){
+                this.isLastPage = false
+            } else {
+                this.isLastPage = true
+            }
+
+            this.animesData = [...this.animesData, data.data]
+            console.log(this.animesData)
         },
     },
 };
