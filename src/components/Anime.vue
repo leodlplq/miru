@@ -38,7 +38,10 @@
                         >
                         <span v-else>Unrated</span>
                     </div>
-                    <span class="anime-animator">
+                    <span
+                        class="anime-animator"
+                        v-if="dataAnime.studios.length != 0"
+                    >
                         animated by <span>{{ dataAnime.studios[0].name }}</span>
                     </span>
                 </div>

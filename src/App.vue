@@ -2,19 +2,24 @@
     <main>
         <Menu />
         <div class="view">
-            <router-view></router-view>
+            <div class="inner-view">
+                <router-view></router-view>
+            </div>
+
+            <Footer />
         </div>
-        
     </main>
 </template>
 
 <script>
 import Menu from "@/components/Menu";
+import Footer from "@/components/Footer";
 
 export default {
     name: "App",
     components: {
-        Menu
+        Menu,
+        Footer,
     },
 };
 </script>
@@ -48,13 +53,31 @@ main {
     text-decoration: none;
     border-radius: 5px;
     border: none;
+    cursor: pointer;
+}
+
+select {
+    padding: 10px;
+    background: #307351;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+}
+
+option {
+    padding: 0px;
+    background: #307351;
 }
 .view {
     position: absolute;
     right: 0;
     width: calc(100% - 350px);
     color: white;
-    padding: 50px;
     font-weight: 200;
+}
+
+.inner-view {
+    width: 100%;
+    padding: 50px;
 }
 </style>
