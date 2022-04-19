@@ -55,4 +55,16 @@ export default {
     height: 10px;
     margin-right: 5px;
 }
+
+@media screen and (max-width:1023px) {
+    .character-name {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width:650px) {
+    .character-name {
+        font-size: 18px;
+    }
+}
 </style>

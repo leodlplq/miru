@@ -70,4 +70,24 @@ footer {
 .message {
     max-width: 350px;
 }
+
+@media screen and (max-width:1023px) {
+    footer{
+        padding: 20px;
+        flex-direction: column;
+        height: 450px;
+    }
+
+    .message{
+        text-align: center;
+    }
+}
+
+@media screen and (max-width:650px) {
+    
+}
+
+@media screen and (max-width:400px) {
+    
+}
 </style>

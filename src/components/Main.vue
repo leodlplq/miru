@@ -98,4 +98,15 @@ export default {
     margin-top: 70px;
     margin-bottom: 15px;
 }
+
+@media screen and (max-width:400px) {
+    .section-title {
+        align-items: baseline;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .section-title > .btn{
+        align-self: baseline;
+    }
+}
 </style>

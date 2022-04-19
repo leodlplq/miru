@@ -18,18 +18,68 @@
                 <IconDelete />
             </button>
         </div>
-        <div class="sort-input">
-            <label for="animé-sort">Sort by : </label>
-            <select v-model="animeSortType" id="anime-sort">
-                <option value="None" selected>None</option>
-                <option value="AZName">Name (A to Z)</option>
-                <option value="ZAName">Name (Z to A)</option>
-                <option value="scoreAsc">Score (asc.)</option>
-                <option value="scoreDesc">Score (desc.)</option>
-            </select>
+        <div class="sort-filter-bar">
+            <div class="sort-input">
+                <label for="anime-sort">Sort by : </label>
+                <select v-model="animeSortType" id="anime-sort">
+                    <option value="None" selected>None</option>
+                    
+                    <option value="AZName">Name (A to Z)</option>
+                    <option value="ZAName">Name (Z to A)</option>
+                    <option value="scoreAsc">Score (asc.)</option>
+                    <option value="scoreDesc">Score (desc.)</option>
+                </select>
+            </div>
+            <div class="filters">
+                <span for="animé-filter">Filter by : </span>
+                <div class="filter-input">
+                    
+                    <select id="anime-sort-genre" v-model="animeGenreFilter">
+                        <option :value="null" disabled selected>Genre</option>
+                        <option :value="null">None</option>
+                        <option 
+                            
+                            v-for="item in genresDataWithoutDoublons"
+                            :key="item.id"
+                            :value="item.name"
+                        
+                        >{{ item.name }}</option>
+                    </select>
+                </div>
+
+                <div class="filter-input">
+                    <select id="anime-sort-type" v-model="animeTypeFilter">
+                        <option :value="null" disabled selected>Type</option>
+                        <option :value="null">None</option>
+                        
+                        <option value="TV">TV</option>
+                        <option value="OVA">OVA</option>
+                        <option value="Movie">Movie</option>
+                        <option value="Special">Special</option>
+                        <option value="ONA">ONA</option>
+                        <option value="Music">Music</option>
+                    </select>
+                </div>
+
+                <div class="filter-input">
+                    <select id="anime-sort-type" v-model="animeAudienceRatingFilter">
+                        <option :value="null" disabled selected>Audience Rating</option>
+                        <option :value="null">None</option>
+                        
+                        <option value="G - All Ages">G - All Ages</option>
+                        <option value="PG - Children">PG - Children</option>
+                        <option value="PG-13 - Teens 13 or older">PG-13 - Teens 13 or older</option>
+                        <option value="R - 17+ (violence & profanity)">R - 17+ (violence & profanity)</option>
+                        <option value="R+ - Mild Nudity">R+ - Mild Nudity</option>
+                        <option value="Rx - Hentai">Rx - Hentai</option>
+                    </select>
+                </div>
+            </div>
         </div>
+        
         <div class="search-result">
             <AnimeGallery :animesData="animeComputedData" />
+            <span v-if="animeComputedData.length == 0">No result for : {{ this.searchWord }}</span>
             <button
                 class="btn btn-seemore"
                 v-if="!isLastPage"
@@ -43,6 +93,7 @@
 
 <script>
 import { getSearchedAnime } from "@/services/api/animeData.js";
+import { getGenres } from "@/services/api/genreData.js";
 import AnimeGallery from "@/components/AnimeGallery";
 import IconDelete from "@/components/icons/IconDelete";
 import IconSearch from "@/components/icons/IconSearch";
@@ -58,10 +109,16 @@ export default {
         return {
             animesData: [],
             search: localStorage.getItem("search") || "",
+            searchWord: localStorage.getItem("search") || "",
             isLastPage: true,
             currentPage: 1,
 
             animeSortType: "None",
+            animeGenreFilter : null,
+            animeTypeFilter: null,
+            animeAudienceRatingFilter:null,
+
+            genresData: []
         };
     },
     computed: {
@@ -122,23 +179,67 @@ export default {
                 default:
                     break;
             }
-            console.log(data);
+
+            if(this.animeGenreFilter != null){
+                let toKeep = false;
+                data = data.filter(el=> {
+                    el.genres.forEach(genre=>{
+                        if(genre.name == this.animeGenreFilter) {
+                            toKeep= true;
+                        }
+                    })
+                    
+                    return toKeep
+                })
+            }
+
+            if(this.animeTypeFilter != null){
+                data = data.filter(el=> el.type == this.animeTypeFilter)
+            }
+
+            if(this.animeAudienceRatingFilter != null){
+                data = data.filter(el=> el.rating == this.animeAudienceRatingFilter)
+            }
             return data;
         },
+        genresDataWithoutDoublons : function(){
+            const uniqueIds = [];
+
+            const unique = this.genresData.filter(element => {
+            const isDuplicate = uniqueIds.includes(element.mal_id);
+
+            if (!isDuplicate) {
+                uniqueIds.push(element.mal_id);
+                return true;
+            }
+            });
+
+            return unique.sort((a,b)=>{
+                if (a.name > b.name) {
+                    return 1;
+                }
+                if (b.name > a.name) {
+                    return -1;
+                }
+                return 0;
+            });
+        }
     },
     created: function () {
-        if (this.search != "") {
-            this.retrieveSearchedAnimeData();
-        }
+        this.retrieveSearchedAnimeData();
+        this.retrieveAnimeGenre()
     },
     methods: {
         eraseSearchBar: function () {
             this.search = "";
+            localStorage.setItem('search', "")
+            this.animesData = []
         },
 
         formSubmition: function () {
             this.animesData = [];
             this.retrieveSearchedAnimeData();
+            this.searchWord = this.search
         },
 
         inputDetected: function () {
@@ -162,6 +263,12 @@ export default {
             this.animesData = [...this.animesData, ...data.data];
             console.log(this.animesData);
         },
+
+        async retrieveAnimeGenre(){
+            let data = await getGenres();
+            this.genresData = data.data;
+            
+        }
     },
 };
 </script>
@@ -233,5 +340,35 @@ export default {
     align-items: center;
     gap: 32px;
     margin-top: 16px;
+}
+
+.sort-filter-bar{
+    display: flex;
+    align-items: center;
+    gap: 50px
+}
+
+.filters{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@media screen and (max-width:1023px) {
+    .sort-filter-bar{
+        flex-direction: column;
+        align-items: baseline;
+        gap:10px
+    }
+
+    
+}
+
+@media screen and (max-width:650px) {
+    .filters{
+        display: flex;
+        flex-direction: column;
+        align-items: baseline;
+    }
 }
 </style>

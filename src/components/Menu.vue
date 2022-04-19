@@ -1,5 +1,6 @@
 <template>
-    <div class="menu">
+    <div :class="isOpen ? 'menu' : 'menu close'">
+        <BurgerButton on:click="toggleMenu" :isOpen.sync="isOpen" />
         <img src="../assets/logo.png" alt="Logo MIRU" id="logo-miru" />
 
         <div class="main-menu">
@@ -24,7 +25,7 @@
             </router-link>
         </div>
 
-        <div class="profile-menu">
+        <!-- <div class="profile-menu">
             <a href="" class="recommended link">
                 <IconHome />
                 <span>Profile</span>
@@ -33,7 +34,7 @@
                 <IconHome />
                 <span>My list</span>
             </a>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -43,6 +44,8 @@ import IconRandom from "@/components/icons/IconRandom";
 import IconTrending from "@/components/icons/IconTrending";
 import IconSearch from "@/components/icons/IconSearch";
 
+import BurgerButton from "@/components/icons/BurgerButton"
+
 export default {
     name: "Menu",
     components: {
@@ -50,7 +53,18 @@ export default {
         IconRandom,
         IconTrending,
         IconSearch,
+        BurgerButton,
     },
+    data(){
+        return {
+            isOpen : false,
+        }
+        
+    },
+    methods: {
+    }
+
+    
 };
 </script>
 
@@ -113,5 +127,24 @@ export default {
 
 #logo-miru {
     width: 120px;
+}
+
+@media screen and (max-width: 1023px) {
+    .menu {
+        background: #151515;
+        z-index: 9999;
+        left: 0;
+        top:0%;
+        bottom: 0%;
+        transition: left 0.5s ease;
+        box-shadow: rgb(215, 215, 215, 0.5) -5px 0px 20px 1px
+    }
+    .menu::after{
+        content: none;
+    }
+
+    .close{
+        left: -280px;
+    }
 }
 </style>

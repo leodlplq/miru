@@ -1,6 +1,6 @@
 <template>
     <router-link :to="`/anime/${animeData.mal_id}`">
-        <div class="anime-card">
+        <div class="anime-card" ref="animeCard">
             <img
                 :src="animeData.images.jpg.large_image_url"
                 alt="Anime images"
@@ -21,9 +21,14 @@
 </template>
 
 <script>
+
+
 export default {
     name: "AnimeCard",
     props: ["animeData"],
+    mounted(){
+       
+    },
 };
 </script>
 

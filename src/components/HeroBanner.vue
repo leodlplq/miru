@@ -59,6 +59,9 @@ export default {
     position: relative;
     border-radius: 10px;
     overflow: hidden;
+    padding: 30px;
+    display: flex;
+    align-items: flex-end;
 }
 
 .banner-background {
@@ -85,17 +88,14 @@ export default {
 }
 
 .banner-infos {
-    position: absolute;
-    bottom: 30px;
-    left: 30px;
-    width: calc(100% - 60px);
+    position: relative;
+    width: calc(100%);
     display: flex;
 }
 
 .banner-infos > .banner-img {
     height: 200px;
     border-radius: 4px;
-    align-self: flex-end;
 }
 
 .banner-right {
@@ -127,5 +127,19 @@ export default {
     display: flex;
     align-items: flex-start;
     justify-content: center;
+}
+
+@media screen and (max-width:1023px) {
+    .hero-banner {
+        width: 100%;
+        height: 600px;
+    }
+
+}
+
+@media screen and (max-width:400px) {
+    .hero-banner{
+        display: none;
+    }
 }
 </style>

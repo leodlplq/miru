@@ -131,15 +131,19 @@ export default {
             this.retrieveCharactersData(id);
             this.retrieveNewsData(id);
         }
+
+        
     },
     updated() {
         console.log(this.dataAnime);
     },
     watch: {
         dataAnime: function () {
-            const id = this.dataAnime.mal_id;
-            this.retrieveCharactersData(id);
-            this.retrieveNewsData(id);
+            if (this.$route.path == "/random") {
+                const id = this.dataAnime.mal_id;
+                this.retrieveCharactersData(id);
+                this.retrieveNewsData(id);
+            }
         },
     },
     methods: {
@@ -147,10 +151,15 @@ export default {
             this.dataAnime = (await getAnimeById(id)).data;
         },
         async retrieveCharactersData(id) {
-            this.charactersAnime = (await getCharactersByAnimeId(id)).data;
+            setTimeout(async() => {
+                this.charactersAnime = (await getCharactersByAnimeId(id)).data;
+            }, 1000); 
         },
         async retrieveNewsData(id) {
-            this.newsAnime = (await getNewsByAnimeId(id)).data;
+            
+            setTimeout(async() => {
+                this.newsAnime = (await getNewsByAnimeId(id)).data;
+            }, 1000); 
         },
         async retrieveRandomAnime() {
             this.dataAnime = (await getRandomAnime()).data;
@@ -239,10 +248,30 @@ export default {
 
 /** NEWS PART */
 
-.news-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-top: 10px;
+@media screen and (max-width:1023px) {
+    
+}
+
+@media screen and (max-width:650px) {
+
+    .anime{
+        padding-top: 0;
+    }
+
+    .anime-banner{
+        display: none;
+    }
+
+    .anime-info{
+        flex-direction: column;
+    }
+
+    .anime-info > .left{
+        width: 100%;
+        height: auto;
+    }
+    .anime-info > .left > img{
+        width: 100%;
+    }
 }
 </style>

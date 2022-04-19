@@ -80,4 +80,16 @@ option {
     width: 100%;
     padding: 50px;
 }
+
+@media screen and (max-width:1023px) {
+    .view {
+        width: calc(100% - 70px);
+    }
+}
+
+@media screen and (max-width:650px) {
+    .inner-view {
+        padding: 20px;
+    }
+}
 </style>
