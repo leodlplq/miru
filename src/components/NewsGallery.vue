@@ -20,7 +20,7 @@ export default {
 
 .news-container {
     display: grid;
-    /* grid-template-columns: repeat(3, 1fr); */
+    grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     margin: 10px 0 50px 0;
 }

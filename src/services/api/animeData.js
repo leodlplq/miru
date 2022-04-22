@@ -46,8 +46,8 @@ async function getRandomAnime() {
     }
 }
 
-async function getTrendingAnimes() {
-    const response = await fetch(`https://api.jikan.moe/v4/top/anime`);
+async function getTrendingAnimes(page = 0) {
+    const response = await fetch(`https://api.jikan.moe/v4/top/anime?page=${page}&limit=24`);
 
     if (response.status == 200) {
         return response.json();

@@ -49,6 +49,12 @@ export default {
     background: red;
 }
 
+@media screen and (max-width:1600px) {
+    .card-list {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
 @media screen and (max-width:1023px) {
     .card-list {
         grid-template-columns: repeat(4, 1fr);
