@@ -1,7 +1,16 @@
 <template>
     <div class="news">
         <div class="news-image">
-            <img :src="newsData.images.jpg.image_url" alt="anime news" />
+            <img
+                v-if="newsData.images.jpg.image_url"
+                :src="newsData.images.jpg.image_url"
+                alt="anime news"
+            />
+            <img
+                v-else
+                src="https://cdn.myanimelist.net/img/sp/icon/apple-touch-icon-256.png"
+                alt="anime news"
+            />
             <div class="overlay">
                 <span
                     >Article by
