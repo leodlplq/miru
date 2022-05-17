@@ -75,6 +75,9 @@
 </template>
 
 <script>
+
+
+
 import {
 	getAnimeById,
 	getCharactersByAnimeId,
@@ -123,6 +126,7 @@ export default {
 		}
 	},
 	created() {
+        window.scrollTo(0,0)
 		if (this.$route.path == '/random') {
 			this.retrieveRandomAnime()
 		} else {

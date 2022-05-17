@@ -2,7 +2,8 @@
 	<div class="search-page">
 		<h1 v-if="search">You've searched {{ search }} !</h1>
 		<h1 v-else>Make a search</h1>
-		<div class="search-bar">
+		<SearchBar v-on:submitForm="formSubmition" v-on:inputForm="inputDetected" v-bind:search.sync="search"/>
+		<!-- <div class="search-bar">
 			<form v-on:submit="formSubmition">
 				<input
 					type="text"
@@ -17,7 +18,7 @@
 			<button class="search-delete" v-on:click="eraseSearchBar">
 				<IconDelete />
 			</button>
-		</div>
+		</div> -->
 		<div class="sort-filter-bar">
 			<div class="sort-input">
 				<label for="anime-sort">Sort by : </label>
@@ -107,15 +108,18 @@
 import { getSearchedAnime } from '@/services/api/animeData.js'
 import { getGenres } from '@/services/api/genreData.js'
 import AnimeGallery from '@/components/AnimeGallery'
-import IconDelete from '@/components/icons/IconDelete'
-import IconSearch from '@/components/icons/IconSearch'
+// import IconDelete from '@/components/icons/IconDelete'
+// import IconSearch from '@/components/icons/IconSearch'
+
+import SearchBar from '@/components/SearchBar'
 
 export default {
 	name: 'Anime',
 	components: {
 		AnimeGallery,
-		IconDelete,
-		IconSearch,
+		// IconDelete,
+		// IconSearch,
+		SearchBar
 	},
 	data() {
 		return {
@@ -244,11 +248,11 @@ export default {
 		this.retrieveAnimeGenre()
 	},
 	methods: {
-		eraseSearchBar: function () {
-			this.search = ''
-			localStorage.setItem('search', '')
-			this.animesData = []
-		},
+		// eraseSearchBar: function () {
+		// 	this.search = ''
+		// 	localStorage.setItem('search', '')
+		// 	this.animesData = []
+		// },
 
 		formSubmition: function () {
 			this.animesData = []
